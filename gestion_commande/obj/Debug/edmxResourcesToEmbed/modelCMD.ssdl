@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestionCommandeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="articles">
+    <Key>
+      <PropertyRef Name="id_article" />
+    </Key>
+    <Property Name="id_article" Type="int" Nullable="false" />
+    <Property Name="code" Type="nchar" MaxLength="10" />
+    <Property Name="designation" Type="nchar" MaxLength="10" />
+    <Property Name="prix_u" Type="float" />
+    <Property Name="rayon" Type="nchar" MaxLength="10" />
+    <Property Name="ss_rayon" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="id_clt" />
+    </Key>
+    <Property Name="id_clt" Type="int" Nullable="false" />
+    <Property Name="nom_clt" Type="nchar" MaxLength="10" />
+    <Property Name="prenom" Type="nchar" MaxLength="10" />
+    <Property Name="adresse" Type="nchar" MaxLength="10" />
+    <Property Name="telephone" Type="nchar" MaxLength="10" />
+    <Property Name="codePostale" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="commande">
+    <Key>
+      <PropertyRef Name="id_cmd" />
+    </Key>
+    <Property Name="id_cmd" Type="int" Nullable="false" />
+    <Property Name="num_cmd" Type="nchar" MaxLength="10" />
+    <Property Name="date" Type="date" />
+    <Property Name="adr_livraison" Type="nchar" MaxLength="10" />
+    <Property Name="id_client" Type="int" />
+  </EntityType>
+  <EntityType Name="ligneCommande">
+    <Key>
+      <PropertyRef Name="id_ligneCmd" />
+    </Key>
+    <Property Name="id_ligneCmd" Type="int" Nullable="false" />
+    <Property Name="quantite" Type="float" />
+    <Property Name="id_article" Type="int" />
+    <Property Name="id_cmd" Type="int" />
+  </EntityType>
+  <Association Name="FK_commande_commande">
+    <End Role="client" Type="Self.client" Multiplicity="0..1" />
+    <End Role="commande" Type="Self.commande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="id_clt" />
+      </Principal>
+      <Dependent Role="commande">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ligneCommande_ligneCommande">
+    <End Role="articles" Type="Self.articles" Multiplicity="0..1" />
+    <End Role="ligneCommande" Type="Self.ligneCommande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="articles">
+        <PropertyRef Name="id_article" />
+      </Principal>
+      <Dependent Role="ligneCommande">
+        <PropertyRef Name="id_article" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ligneCommande_ligneCommande1">
+    <End Role="commande" Type="Self.commande" Multiplicity="0..1" />
+    <End Role="ligneCommande" Type="Self.ligneCommande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="commande">
+        <PropertyRef Name="id_cmd" />
+      </Principal>
+      <Dependent Role="ligneCommande">
+        <PropertyRef Name="id_cmd" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestionCommandeModelStoreContainer">
+    <EntitySet Name="articles" EntityType="Self.articles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="commande" EntityType="Self.commande" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ligneCommande" EntityType="Self.ligneCommande" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_commande_commande" Association="Self.FK_commande_commande">
+      <End Role="client" EntitySet="client" />
+      <End Role="commande" EntitySet="commande" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ligneCommande_ligneCommande" Association="Self.FK_ligneCommande_ligneCommande">
+      <End Role="articles" EntitySet="articles" />
+      <End Role="ligneCommande" EntitySet="ligneCommande" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ligneCommande_ligneCommande1" Association="Self.FK_ligneCommande_ligneCommande1">
+      <End Role="commande" EntitySet="commande" />
+      <End Role="ligneCommande" EntitySet="ligneCommande" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

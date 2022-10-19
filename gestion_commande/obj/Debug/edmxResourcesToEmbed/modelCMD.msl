@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gestionCommandeModelStoreContainer" CdmEntityContainer="gestionCommandeContext">
+    <EntitySetMapping Name="articles">
+      <EntityTypeMapping TypeName="gestionCommandeModel.article">
+        <MappingFragment StoreEntitySet="articles">
+          <ScalarProperty Name="id_article" ColumnName="id_article" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="prix_u" ColumnName="prix_u" />
+          <ScalarProperty Name="rayon" ColumnName="rayon" />
+          <ScalarProperty Name="ss_rayon" ColumnName="ss_rayon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="gestionCommandeModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="id_clt" ColumnName="id_clt" />
+          <ScalarProperty Name="nom_clt" ColumnName="nom_clt" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="codePostale" ColumnName="codePostale" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="commandes">
+      <EntityTypeMapping TypeName="gestionCommandeModel.commande">
+        <MappingFragment StoreEntitySet="commande">
+          <ScalarProperty Name="id_cmd" ColumnName="id_cmd" />
+          <ScalarProperty Name="num_cmd" ColumnName="num_cmd" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="adr_livraison" ColumnName="adr_livraison" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ligneCommandes">
+      <EntityTypeMapping TypeName="gestionCommandeModel.ligneCommande">
+        <MappingFragment StoreEntitySet="ligneCommande">
+          <ScalarProperty Name="id_ligneCmd" ColumnName="id_ligneCmd" />
+          <ScalarProperty Name="quantite" ColumnName="quantite" />
+          <ScalarProperty Name="id_article" ColumnName="id_article" />
+          <ScalarProperty Name="id_cmd" ColumnName="id_cmd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

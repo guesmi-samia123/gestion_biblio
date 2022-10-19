@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{550076AD-7E01-4A2E-B8A6-0D5F8CE21871}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>gestion_commande</RootNamespace>
+    <AssemblyName>gestion_commande</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.3.2, Culture=neutral, PublicKeyToken=4015e4865bda28a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.3.2\lib\net40\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="controllers\articlecontroller.cs" />
+    <Compile Include="controllers\clientController.cs" />
+    <Compile Include="controllers\CommandeController.cs" />
+    <Compile Include="controllers\connexion.cs" />
+    <Compile Include="controllers\EmpreinteControllers.cs" />
+    <Compile Include="controllers\JournaleController.cs" />
+    <Compile Include="controllers\ligneCommandeController.cs" />
+    <Compile Include="controllers\LivreController.cs" />
+    <Compile Include="controllers\livreEmpreinte.cs" />
+    <Compile Include="controllers\LivreEmpreinteController.cs" />
+    <Compile Include="controllers\MagazineController.cs" />
+    <Compile Include="controllers\UserController.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modelCMD.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelCMD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modelCMD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelCMD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modelCMD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelCMD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="model\Article.cs" />
+    <Compile Include="model\Client.cs" />
+    <Compile Include="model\Commande.cs" />
+    <Compile Include="model\Empreinte.cs" />
+    <Compile Include="model\Journale.cs" />
+    <Compile Include="model\LigneCommande.cs" />
+    <Compile Include="model\Livre.cs" />
+    <Compile Include="model\Magazine.cs" />
+    <Compile Include="model\user.cs" />
+    <Compile Include="pl\Ajouter_modifier_Client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\Ajouter_modifier_Client.Designer.cs">
+      <DependentUpon>Ajouter_modifier_Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\CommandeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pl\CommandeControl.Designer.cs">
+      <DependentUpon>CommandeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\control_liste_client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\control_liste_client.Designer.cs">
+      <DependentUpon>control_liste_client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\connecter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\connecter.Designer.cs">
+      <DependentUpon>connecter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\descriptionLivre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pl\descriptionLivre.Designer.cs">
+      <DependentUpon>descriptionLivre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\DocumentsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pl\DocumentsControl.Designer.cs">
+      <DependentUpon>DocumentsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\fichierimprimer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\fichierimprimer.Designer.cs">
+      <DependentUpon>fichierimprimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\historiqueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pl\historiqueControl.Designer.cs">
+      <DependentUpon>historiqueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\inscrire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\inscrire.Designer.cs">
+      <DependentUpon>inscrire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\inscrireControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pl\inscrireControl.Designer.cs">
+      <DependentUpon>inscrireControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\loginControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pl\loginControl.Designer.cs">
+      <DependentUpon>loginControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\menu.Designer.cs">
+      <DependentUpon>menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\ProgressBar.cs" />
+    <Compile Include="pl\Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pl\Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pl\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="pl\Ajouter_modifier_Client.resx">
+      <DependentUpon>Ajouter_modifier_Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\CommandeControl.resx">
+      <DependentUpon>CommandeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\control_liste_client.resx">
+      <DependentUpon>control_liste_client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\connecter.resx">
+      <DependentUpon>connecter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\descriptionLivre.resx">
+      <DependentUpon>descriptionLivre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\DocumentsControl.resx">
+      <DependentUpon>DocumentsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\fichierimprimer.resx">
+      <DependentUpon>fichierimprimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\historiqueControl.resx">
+      <DependentUpon>historiqueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\inscrire.resx">
+      <DependentUpon>inscrire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\inscrireControl.resx">
+      <DependentUpon>inscrireControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\loginControl.resx">
+      <DependentUpon>loginControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\menu.resx">
+      <DependentUpon>menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pl\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="modelCMD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>modelCMD.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="modelCMD.edmx.diagram">
+      <DependentUpon>modelCMD.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="modelCMD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>modelCMD.Context.cs</LastGenOutput>
+      <DependentUpon>modelCMD.edmx</DependentUpon>
+    </Content>
+    <Content Include="modelCMD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>modelCMD.edmx</DependentUpon>
+      <LastGenOutput>modelCMD.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\discuter.png" />
+    <None Include="Resources\se-deconnecter %281%291.png" />
+    <None Include="Resources\se-deconnecter %281%29.png" />
+    <None Include="Resources\se-deconnecter.png" />
+    <None Include="Resources\notification1.png" />
+    <None Include="Resources\notification.png" />
+    <None Include="Resources\horloge.png" />
+    <None Include="Resources\historique-des-transactions.png" />
+    <None Include="Resources\search2.png" />
+    <None Include="Resources\search1.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\open-book.png" />
+    <None Include="Resources\livre-ouvert %281%291.png" />
+    <None Include="Resources\button.png" />
+    <None Include="Resources\a9bb8dc1736c08caf05ec35d3cc5d885.jpg" />
+    <None Include="Resources\1a0a171219915c18b2fb8e29e250c2c0.jpg" />
+    <None Include="Resources\livre-ouvert %281%29.png" />
+    <None Include="Resources\livre-ouvert.png" />
+    <None Include="Resources\ville_32.png" />
+    <None Include="Resources\Subtract_32.png" />
+    <None Include="Resources\SM-T580NZKAXAR-02-71016.jpg" />
+    <None Include="Resources\Shutdown_32.png" />
+    <None Include="Resources\shopping-icon.png" />
+    <None Include="Resources\shop-cart-add-icon.png" />
+    <None Include="Resources\Settings_32.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\samsung s8.jpg" />
+    <None Include="Resources\samsung s8 plus.png" />
+    <None Include="Resources\samsung s7.jpg" />
+    <None Include="Resources\samsung s5.jpg" />
+    <None Include="Resources\Refresh-icon.png" />
+    <None Include="Resources\Recycle-iconaaa.png" />
+    <None Include="Resources\Quantie_32.png" />
+    <None Include="Resources\product_32.png" />
+    <None Include="Resources\prix_32.png" />
+    <None Include="Resources\print-icon.png" />
+    <None Include="Resources\Pictures-icon.png" />
+    <None Include="Resources\Phone_32.png" />
+    <None Include="Resources\Pdpkeyfeature-sm-g920azdaatt-600x600-C1-062016.jpg" />
+    <None Include="Resources\pctoshiba.jpg" />
+    <None Include="Resources\pcmsi.jpeg" />
+    <None Include="Resources\pc acer.jpg" />
+    <None Include="Resources\Office-Client-Male-Light-icon.png" />
+    <None Include="Resources\Motdepasse_32.png" />
+    <None Include="Resources\Menu_32.png" />
+    <None Include="Resources\MACBOOKPRO.jpg" />
+    <None Include="Resources\login_32.png" />
+    <None Include="Resources\k.png" />
+    <None Include="Resources\iphonex.jpg" />
+    <None Include="Resources\iphone7plus.png" />
+    <None Include="Resources\iphone4c.jpg" />
+    <None Include="Resources\iphone s6plus.jpg" />
+    <None Include="Resources\iphone 6s.jpg" />
+    <None Include="Resources\iphone 6plus.jpg" />
+    <None Include="Resources\iphone 6.jpg" />
+    <None Include="Resources\iphone 5s.jpg" />
+    <None Include="Resources\iphone 5.jpg" />
+    <None Include="Resources\iphone 4s.jpg" />
+    <None Include="Resources\iphone 4.jpg" />
+    <None Include="Resources\Imprimer.png" />
+    <None Include="Resources\ImpriCanon.jpg" />
+    <None Include="Resources\Gmail_32.png" />
+    <None Include="Resources\Excel-icon.png" />
+    <None Include="Resources\Epson.jpg" />
+    <None Include="Resources\Download.png" />
+    <None Include="Resources\dell.jpg" />
+    <None Include="Resources\Deconnecte.png" />
+    <None Include="Resources\deconnect.png" />
+    <None Include="Resources\customer-service-icon.png" />
+    <None Include="Resources\customer-people.jpg" />
+    <None Include="Resources\Country_32.png" />
+    <None Include="Resources\Copier.png" />
+    <None Include="Resources\connectmode.png" />
+    <None Include="Resources\Connected_16.png" />
+    <None Include="Resources\Close-2-icon.png" />
+    <None Include="Resources\Categorize_32.png" />
+    <None Include="Resources\Categorie.png" />
+    <None Include="Resources\c05477854.png" />
+    <None Include="Resources\Button-Delete-icon.png" />
+    <None Include="Resources\Apple-iPhone-7-128-Go-4-7-Rouge.jpg" />
+    <None Include="Resources\adresse.png" />
+    <None Include="Resources\Actions-list-add-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

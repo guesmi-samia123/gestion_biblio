@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestionCommandeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="article">
+    <Key>
+      <PropertyRef Name="id_article" />
+    </Key>
+    <Property Name="id_article" Type="Int32" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="designation" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="prix_u" Type="Double" />
+    <Property Name="rayon" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ss_rayon" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ligneCommandes" Relationship="Self.FK_ligneCommande_ligneCommande" FromRole="articles" ToRole="ligneCommande" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="id_clt" />
+    </Key>
+    <Property Name="id_clt" Type="Int32" Nullable="false" />
+    <Property Name="nom_clt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="prenom" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="adresse" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="telephone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="codePostale" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="commandes" Relationship="Self.FK_commande_commande" FromRole="client" ToRole="commande" />
+  </EntityType>
+  <EntityType Name="commande">
+    <Key>
+      <PropertyRef Name="id_cmd" />
+    </Key>
+    <Property Name="id_cmd" Type="Int32" Nullable="false" />
+    <Property Name="num_cmd" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="adr_livraison" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_client" Type="Int32" />
+    <NavigationProperty Name="client" Relationship="Self.FK_commande_commande" FromRole="commande" ToRole="client" />
+    <NavigationProperty Name="ligneCommandes" Relationship="Self.FK_ligneCommande_ligneCommande1" FromRole="commande" ToRole="ligneCommande" />
+  </EntityType>
+  <EntityType Name="ligneCommande">
+    <Key>
+      <PropertyRef Name="id_ligneCmd" />
+    </Key>
+    <Property Name="id_ligneCmd" Type="Int32" Nullable="false" />
+    <Property Name="quantite" Type="Double" />
+    <Property Name="id_article" Type="Int32" />
+    <Property Name="id_cmd" Type="Int32" />
+    <NavigationProperty Name="article" Relationship="Self.FK_ligneCommande_ligneCommande" FromRole="ligneCommande" ToRole="articles" />
+    <NavigationProperty Name="commande" Relationship="Self.FK_ligneCommande_ligneCommande1" FromRole="ligneCommande" ToRole="commande" />
+  </EntityType>
+  <Association Name="FK_ligneCommande_ligneCommande">
+    <End Role="articles" Type="Self.article" Multiplicity="0..1" />
+    <End Role="ligneCommande" Type="Self.ligneCommande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="articles">
+        <PropertyRef Name="id_article" />
+      </Principal>
+      <Dependent Role="ligneCommande">
+        <PropertyRef Name="id_article" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_commande_commande">
+    <End Role="client" Type="Self.client" Multiplicity="0..1" />
+    <End Role="commande" Type="Self.commande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="id_clt" />
+      </Principal>
+      <Dependent Role="commande">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ligneCommande_ligneCommande1">
+    <End Role="commande" Type="Self.commande" Multiplicity="0..1" />
+    <End Role="ligneCommande" Type="Self.ligneCommande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="commande">
+        <PropertyRef Name="id_cmd" />
+      </Principal>
+      <Dependent Role="ligneCommande">
+        <PropertyRef Name="id_cmd" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestionCommandeContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="articles" EntityType="Self.article" />
+    <EntitySet Name="clients" EntityType="Self.client" />
+    <EntitySet Name="commandes" EntityType="Self.commande" />
+    <EntitySet Name="ligneCommandes" EntityType="Self.ligneCommande" />
+    <AssociationSet Name="FK_ligneCommande_ligneCommande" Association="Self.FK_ligneCommande_ligneCommande">
+      <End Role="articles" EntitySet="articles" />
+      <End Role="ligneCommande" EntitySet="ligneCommandes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_commande_commande" Association="Self.FK_commande_commande">
+      <End Role="client" EntitySet="clients" />
+      <End Role="commande" EntitySet="commandes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ligneCommande_ligneCommande1" Association="Self.FK_ligneCommande_ligneCommande1">
+      <End Role="commande" EntitySet="commandes" />
+      <End Role="ligneCommande" EntitySet="ligneCommandes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
